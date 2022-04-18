@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/sourceLangSelector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sourceText"
+            android:hint="Input text here"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:gravity="top"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Spinner
+        android:id="@+id/sourceLangSelector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintEnd_toStartOf="@id/buttonSwitchLang"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSwitchLang"
+        style="@style/IconOnlyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:icon="@drawable/ic_baseline_sync_alt_24"
+        app:layout_constraintEnd_toStartOf="@+id/targetLangSelector"
+        app:layout_constraintStart_toEndOf="@+id/sourceLangSelector"
+        app:layout_constraintTop_toTopOf="@id/sourceLangSelector"/>
+
+
+    <Spinner
+        android:id="@+id/targetLangSelector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/sourceLangSelector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonSwitchLang"
+        app:layout_constraintTop_toTopOf="@id/sourceLangSelector"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translate"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/downloadModels"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSwitchLang"
+        app:layout_constraintStart_toStartOf="@id/buttonSwitchLang"
+        app:layout_constraintTop_toBottomOf="@id/buttonSwitchLang" />
+
+    <Button
+        android:id="@+id/dicButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Definition"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/downloadModels"
+        app:layout_constraintEnd_toEndOf="@+id/sourceLangSelector"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sourceLangSelector" />
+
+    <Button
+        android:id="@+id/voiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Listen"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/downloadModels"
+        app:layout_constraintStart_toStartOf="@+id/targetLangSelector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/targetLangSelector" />
+
+    <TextView
+        android:id="@+id/downloadModels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="8dp"
+        android:text="Downloaded Model"
+        app:layout_constraintBottom_toTopOf="@id/targetText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delButton"
+        style="@style/IconOnlyButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_delete_sweep_24"
+        app:layout_constraintStart_toEndOf="@id/downloadModels"
+        app:layout_constraintTop_toBottomOf="@id/voiceButton"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/targetText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="top"
+        android:textSize="20sp"
+        android:scrollbars="vertical"
+        android:text="Translated Text"
+        app:layout_constraintBottom_toTopOf="@id/cameraButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/downloadModels"/>
+
+
+    <ImageView
+        android:id="@+id/micButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:backgroundTint="#F9F8FA"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_baseline_mic_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/targetText"
+        app:layout_constraintStart_toEndOf="@id/cameraButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cameraButton"
+        style="@style/IconOnlyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="270dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/targetText"
+        app:icon="@drawable/ic_baseline_camera_alt_24"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/spellButton"
+        style="@style/IconOnlyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/targetText"
+        app:icon="@drawable/ic_baseline_find_replace_24"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
