@@ -50,6 +50,7 @@ import com.google.mlkit.nl.translate.TranslatorOptions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 public class MainActivity extends AppCompatActivity implements SpellCheckerSessionListener{
 
@@ -305,21 +306,28 @@ public class MainActivity extends AppCompatActivity implements SpellCheckerSessi
                     downloadModels.setText("Please wait");
                 }
             });
-            translator.translate(editText.getText().toString()).addOnSuccessListener(new OnSuccessListener<String>() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onSuccess(String s) {
-                    targetView.setText(s);
-                    downloadModels.setText("Translated");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    downloadModels.setText("Model needed");
-                    e.printStackTrace();
-                }
-            });
+            targetView.setText("");
+
+            String tmp =editText.getText().toString();
+            String[] subtmp = tmp.split("\n");
+            for (String s : subtmp){
+                translator.translate(s).addOnSuccessListener(new OnSuccessListener<String>() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onSuccess(String s) {
+                        targetView.append(s+"\n");
+                        downloadModels.setText("Translated");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        downloadModels.setText("Model needed");
+                        e.printStackTrace();
+                    }
+                });
+            }
+
         }
     }
 
